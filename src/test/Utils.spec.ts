@@ -1,5 +1,7 @@
 import { Utils } from "../app/Utils"
 
+// describe.only() Runs only this test
+// describe.skip() Skips this test
 describe("Utils test suite", () => {
     // beforeEach runs every time before running any test
     beforeEach(() => {
@@ -11,11 +13,13 @@ describe("Utils test suite", () => {
         console.log("before All")
     })
 
-    test("to upper case test", () => {
+    // we can use skip() and only() for "test" too
+    test.skip("to upper case test", () => {
         const result = Utils.toUpperCase("abc")
         expect(result).toBe("ABC")
     })
 
+    // test.only()
     test("parse simple URL", () => {
         const url = "http://localhost:3000/x%20y"
         const parsedUrl = Utils.parseUrl(url)
@@ -34,4 +38,9 @@ describe("Utils test suite", () => {
         expect(parsedUrl.query).toEqual(expectedQuery)
         expect(typeof parsedUrl.query.user).toBe("string")
     })
+
+    // todo() marks this test as todo
+    // so we can check this test later
+    // and fix the problems
+    test.todo("invalid URL")
 })
